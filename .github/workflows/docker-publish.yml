@@ -57,7 +57,7 @@ jobs:
       
       - name: Bump version
         run: | 
-          git checkout https://github.com/p4k03n4t0r/GitOps.git
+          git clone https://github.com/p4k03n4t0r/GitOps.git
           cd GitOps/hello-world
           # remove '/refs/tags/' prefix
           NEW_VERSION=$(echo "$GITHUB_REF" | sed 's/refs\/tags\///g')
