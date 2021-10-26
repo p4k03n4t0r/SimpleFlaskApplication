@@ -55,26 +55,13 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
       
-      - name: Clone GitOps repo
-        uses: actions/checkout@v2
-        with:
-          repository: p4k03n4t0r/GitOps
-          path: gitops
-
       - name: Bump version
         run: | 
-          cd gitops/hello-world
-          cat hello-world-deployment.yaml
-          echo $GITHUB_REF
+          git checkout https://github.com/p4k03n4t0r/GitOps.git
+          cd GitOps/hello-world
+          # remove '/refs/tags/' prefix
           NEW_VERSION=$(echo "$GITHUB_REF" | sed 's/refs\/tags\///g')
-          echo $NEW_VERSION
           # replace v*.*.* with new semantic version
           sed -i "s/simpleflaskapplication:v*.*.*/simpleflaskapplication:$NEW_VERSION/g" hello-world-deployment.yaml
-          cat hello-world-deployment.yaml
-
-      - name: Commit version
-        run: |
-          git commit -m "Deploying image new version $GITHUB_REF of SimpleFlaskApplication
+          git commit -m "Deploying image new version $GITHUB_REF of SimpleFlaskApplication"
           git push
-
-
