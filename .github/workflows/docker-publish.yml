@@ -68,7 +68,7 @@ jobs:
 
       - name: Bump version
         run: | 
-          cd hello-world
+          cd gitops/hello-world
           cat hello-world-deployment.yaml
           echo $GITHUB_REF
           # replace v*.*.* with new semantic version
