@@ -57,9 +57,9 @@ jobs:
       
       - name: Bump version
         run: | 
-          git config --global user.email "you@example.com"
           git clone https://github.com/p4k03n4t0r/GitOps.git
           cd GitOps/hello-world
+          git config --local user.email "paul@example.com"
           # remove '/refs/tags/' prefix
           NEW_VERSION=$(echo "$GITHUB_REF" | sed 's/refs\/tags\///g')
           # replace v*.*.* with new semantic version
