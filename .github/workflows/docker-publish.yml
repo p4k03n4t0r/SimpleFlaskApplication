@@ -67,5 +67,7 @@ jobs:
 
           # replace v*.*.* with new semantic version
           sed -i "s/simpleflaskapplication:v*.*.*/simpleflaskapplication:$NEW_VERSION/g" hello-world-deployment.yaml
+
+          git add hello-world-deployment.yaml
           git commit -m "Deploying image new version $GITHUB_REF of SimpleFlaskApplication"
           git push
